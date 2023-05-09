@@ -1,13 +1,12 @@
 import './style.css'
 import { logit } from './app.ts'
 
-const OOPS = 'RGAPI-fa566516-6742-4340-9c52-d9f0e34104b0'
 const search = document.querySelector('#search') as HTMLElement;
 const app = document.querySelector('#app') as HTMLElement;
 const headrc = {
   headers: {
     "Accept-Charset": "application/x-www-form-urlencoded; charset=UTF-8",
-    "X-Riot-Token": OOPS
+    "X-Riot-Token": import.meta.env.VITE_OOPS
   }
 };
 

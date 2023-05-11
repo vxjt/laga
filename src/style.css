@@ -17,12 +17,30 @@ input {
   width: 100%;
 }
 
-details {
-  padding-left: 1em;
-}
-
 input:focus {
   outline: none;
+}
+
+span.mono {
+  font-family: monospace;
+}
+
+span.num {
+  font-weight: bold;
+}
+
+span.bool {
+  font-style: italic;
+}
+
+span.error {
+  font-family: monospace;
+  color: var(--color-c);
+  font-weight: bolder;
+}
+
+details {
+  padding-left: 1em;
 }
 
 .wrapper {
@@ -35,16 +53,11 @@ input:focus {
   margin: 2em;
   padding: 0.25em;
   border: 0 solid var(--color-b);
-  /*border width, border style, border color*/
   border-width: 0 0 2px 0;
 }
 
 .mag {
   font-size: 20px;
-  -webkit-user-select: none;
-  /* Safari */
-  -ms-user-select: none;
-  /* IE 10+ */
   user-select: none;
   margin: 0em 0.2em 0em 0.1em;
 }

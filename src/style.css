@@ -54,6 +54,7 @@ details {
   padding: 0.25em;
   border: 0 solid var(--color-b);
   border-width: 0 0 2px 0;
+  width: 20em;
 }
 
 .mag {

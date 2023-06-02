@@ -4,7 +4,10 @@ import { rrender } from './app.ts'
 const search = document.querySelector('#search') as HTMLInputElement;
 const app = document.querySelector('#app') as HTMLElement;
 const dev = document.querySelector('#dev') as HTMLElement;
-const clear = document.querySelector('button.clear') as HTMLElement;
+const clear = document.querySelector('#clear') as HTMLButtonElement;
+const mag = document.querySelector('#mag') as HTMLButtonElement;
+const regionb = document.querySelector("#region") as HTMLButtonElement;
+const regionlist = document.querySelector("#region-wrap") as HTMLDialogElement;
 const html = { raw: {}, str: `` }
 const apis: any = {
   global: {
@@ -22,6 +25,89 @@ const apis: any = {
   }
 }
 
+const api2: any = {
+  br1: {
+    host: `br1.api.riotgames.com`,
+    name: `Brazil`,
+    region: `americas.api.riotgames.com`
+  },
+  eun1: {
+    host: `eun1.api.riotgames.com`,
+    name: `Europe Nordic & East`,
+    region: `europe.api.riotgames.com`
+  },
+  euw1: {
+    host: `euw1.api.riotgames.com`,
+    name: `Europe West`,
+    region: `europe.api.riotgames.com`
+  },
+  jp1: {
+    host: `jp1.api.riotgames.com`,
+    name: `Japan`,
+    region: `asia.api.riotgames.com`
+  },
+  kr: {
+    host: `kr.api.riotgames.com`,
+    name: `Korea`,
+    region: `asia.api.riotgames.com`
+  },
+  la1: {
+    host: `la1.api.riotgames.com`,
+    name: `Latin America North`,
+    region: `americas.api.riotgames.com`
+  },
+  la2: {
+    host: `la2.api.riotgames.com`,
+    name: `Latin America South`,
+    region: `americas.api.riotgames.com`
+  },
+  na1: {
+    host: `na1.api.riotgames.com`,
+    name: `North America`,
+    region: `americas.api.riotgames.com`
+  },
+  oc1: {
+    host: `oc1.api.riotgames.com`,
+    name: `Oceania`,
+    region: `sea.api.riotgames.com`
+  },
+  tr1: {
+    host: `tr1.api.riotgames.com`,
+    name: `Turkey`,
+    region: `europe.api.riotgames.com`
+  },
+  ru: {
+    host: `ru.api.riotgames.com`,
+    name: `Russia`,
+    region: `asia.api.riotgames.com`
+  },
+  ph2: {
+    host: `ph2.api.riotgames.com`,
+    name: `Philippines`,
+    region: `sea.api.riotgames.com`
+  },
+  sg2: {
+    host: `sg2.api.riotgames.com`,
+    name: `Singapore`,
+    region: `sea.api.riotgames.com`
+  },
+  th2: {
+    host: `th2.api.riotgames.com`,
+    name: `Thailand`,
+    region: `sea.api.riotgames.com`
+  },
+  tw2: {
+    host: `tw2.api.riotgames.com`,
+    name: `Taiwan`,
+    region: `asia.api.riotgames.com`
+  },
+  vn2: {
+    host: `tw2.api.riotgames.com`,
+    name: `Vietnam`,
+    region: `sea.api.riotgames.com`
+  }
+}
+
 const headrc = {
   headers: {
     "Accept-Charset": "application/x-www-form-urlencoded; charset=UTF-8",
@@ -32,10 +118,17 @@ const headrc = {
 let bigdata = {}
 
 function init(): void {
-  search.addEventListener('keydown', kblisten)
-  search.addEventListener('input', inputlisten)
-  clear.addEventListener('click', clicklisten)
-  app.innerHTML = `<center>..hey</center>`
+  search.addEventListener(`keydown`, kblisten)
+  search.addEventListener(`input`, inputlisten)
+  clear.addEventListener(`click`, clicklisten)
+  regionb.addEventListener(`click`, clicklisten)
+  mag.addEventListener(`click`, clicklisten)
+  let regionhtml = `<div id="region-wrap">`
+  for (let ah in api2) {
+    regionhtml += `<div class="region-list-button-bg"><button class="region-list-button">${api2[ah].name}</button></div>`
+  }
+  regionhtml += `</div>`
+  //regionlist.innerHTML = regionhtml
 }
 
 function method2(v: string) {
@@ -78,7 +171,7 @@ function kblisten(event: KeyboardEvent) {
   if (event.key == "Enter") {
     //loading event, 'sec' rendered
     app.innerHTML = `<center>sec</center>`
-    let val = (event.target as HTMLInputElement).value
+    let val = search.value
     //sanitize, longer than 3 letters
     if (val.length > 3) {
       method2(val)
@@ -87,9 +180,28 @@ function kblisten(event: KeyboardEvent) {
   }
 }
 
-function clicklisten() {
-  search.value = ""
-  clear.style.display = "none"
+function clicklisten(event: Event) {
+  switch (event.target) {
+    case clear:
+      search.value = ""
+      clear.style.display = "none"
+      break;
+    case regionb:
+      //regionlist.open ? regionlist.close() : regionlist.show()
+      break;
+    case mag:
+      //loading event, 'sec' rendered
+      app.innerHTML = `<center>sec</center>`
+      let val = search.value
+      //sanitize, longer than 3 letters
+      if (val.length > 3) {
+        method2(val)
+        method1(val)
+      }
+      break;
+    default:
+      console.log(`clicklisten: ${event.target}`)
+  }
 }
 
 /*

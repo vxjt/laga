@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8" />
   <title>laga</title>
@@ -7,19 +8,45 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Emoji:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
 </head>
 
 <body>
-  <div class="wrapper">
-    <div class="search-area">
+  <div class="nav">
+    <div class="nav-empty"></div>
+    <div class="underlined-area">
       <input type="text" id="search" name="q" placeholder="">
-      <button class="clear">🧹</button>
-      <button class="mag">🔍</button>
+      <button id="clear">🧹</button>
+      <button id="mag">🔍</button>
     </div>
-    
-    <div id="app"></div>
-    <div id="dev"></div>
+    <div class="nav-full">
+      <div class="nav-region">
+        <button id="region" class="region">North America</button>
+      </div>
+      <div class="nav-language">
+        <button class="language">English (NA)</button>
+      </div>
+    </div>
   </div>
+  <div class="main">
+    <div id="app"></div>
+  </div>
+  <div class="info">
+    <div class="contact">
+      contact
+    </div>
+    <div class="legal">
+      [Your product] isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone
+      officially involved in producing or managing Riot Games properties. Riot Games, and all associated properties are
+      trademarks or registered trademarks of Riot Games, Inc.
+    </div>
+    <div class="dev">
+      dev
+      <div id="region-wrap">
+      </div>
+    </div>
+  </div>
+
   <script type="module" src="/src/main.ts"></script>
 </body>
 

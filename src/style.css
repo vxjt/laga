@@ -1,15 +1,23 @@
 :root {
   --color-a: #121212;
   --color-b: #b3b3b3;
-  --color-c: #ff0000;
+  --color-c: #b300b3;
+  --main-font: 'Merriweather'
 }
 
 body {
+  font-family: var(--main-font);
   background-color: var(--color-a);
   color: var(--color-b);
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+  flex-direction: column;
 }
 
 input {
+  font-family: var(--main-font);
   font-size: 20px;
   border: 0;
   color: var(--color-b);
@@ -19,6 +27,14 @@ input {
 
 input:focus {
   outline: none;
+}
+
+button {
+  font-family: var(--main-font);
+  background-color: var(--color-a);
+  color: var(--color-b);
+  border: 0 solid var(--color-c);
+  padding: 0;
 }
 
 span.mono {
@@ -39,45 +55,97 @@ span.error {
   font-weight: bolder;
 }
 
-button.region {
-  background-color: var(--color-b);
-  color: var(--color-a);
-  border: 0;
-  font-family: sans-serif;
-  font-weight: bolder;
-}
-
-button.mag {
-  background-color: var(--color-a);
-  color: var(--color-b);
-  border: 0;
+#mag {
   font-family: 'Noto Emoji';
   font-weight: bolder;
+  cursor: pointer;
 }
 
-button.clear {
-  background-color: var(--color-a);
-  color: var(--color-b);
-  border: 0;
+#clear {
   font-family: 'Noto Emoji';
   display: none;
+  cursor: pointer;
 }
 
-details {
-  padding-left: 1em;
-}
-
-.wrapper {
+.flex-wrap {
   display: flex;
-  flex-direction: column;
+  
 }
 
-.search-area {
+.nav {
   display: flex;
-  margin: 2em;
-  padding: 0.25em;
+  flex: 2;
+}
+
+.nav-empty {
+  flex: 1;
+}
+
+.underlined-area {
+  align-items: flex-end;
+  flex: 1;
+  display: flex;
   border: 0 solid var(--color-b);
-  border-width: 0 0 0.07em 0;
-  width: 20em;
+  border-width: 0 0 0.1em 0;
+  min-width: 18em;
+  max-width: 25em;
 }
 
+.nav-full {
+  display: flex;
+  flex: 1;
+  margin: 1vh 2em 0 1em;
+}
+
+.nav-region {
+  display: flex;
+  flex: 1;
+  white-space: nowrap;
+  align-items: flex-end;
+}
+
+button.region {
+  font-size: large;
+  cursor: pointer;
+}
+
+.nav-language {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+  white-space: nowrap;
+}
+
+button.language {
+  font-size: x-small;
+  text-align: end;
+  height: 1lh;
+  cursor: pointer;
+}
+
+.main {
+  flex: 1;
+}
+
+.info {
+  font-size: x-small;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin: 0 1em 1lh 1em;
+}
+
+.contact {
+  text-align: center;
+  text-decoration: underline;
+}
+
+.legal {
+  font-size: xx-small;
+  font-style: italic;
+}
+
+.dev {
+  font-family: monospace;
+}

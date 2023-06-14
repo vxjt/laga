@@ -6,8 +6,8 @@ const app = document.querySelector('#app') as HTMLElement;
 const dev = document.querySelector('#dev') as HTMLElement;
 const clear = document.querySelector('#clear') as HTMLButtonElement;
 const mag = document.querySelector('#mag') as HTMLButtonElement;
-const regionb = document.querySelector("#region") as HTMLButtonElement;
-const regionlist = document.querySelector("#region-wrap") as HTMLDialogElement;
+const regionb = document.querySelector("#region-button") as HTMLButtonElement;
+const regionlist = document.querySelector("#region-dialog") as HTMLDialogElement;
 const html = { raw: {}, str: `` }
 const apis: any = {
   global: {
@@ -116,6 +116,8 @@ const headrc = {
 }
 
 let bigdata = {}
+let curregion = `na1`
+
 
 function init(): void {
   search.addEventListener(`keydown`, kblisten)
@@ -123,12 +125,24 @@ function init(): void {
   clear.addEventListener(`click`, clicklisten)
   regionb.addEventListener(`click`, clicklisten)
   mag.addEventListener(`click`, clicklisten)
-  let regionhtml = `<div id="region-wrap">`
+  let regionhtml = ``
   for (let ah in api2) {
-    regionhtml += `<div class="region-list-button-bg"><button class="region-list-button">${api2[ah].name}</button></div>`
+    regionhtml += `<button class="region-list-button" value="${ah}">${api2[ah].name}</button><br />`
   }
-  regionhtml += `</div>`
-  //regionlist.innerHTML = regionhtml
+  regionlist.innerHTML = regionhtml
+  regionb.innerHTML = `${api2[curregion].name}`
+  regionlist.style.bottom = `${Object.keys(api2).indexOf(curregion) - Object.keys(api2).length + 1}lh`
+  var regionbuttons = document.getElementsByClassName(`region-list-button`)
+  for (let bh in regionbuttons) {
+    if (regionbuttons[bh].nodeName == `BUTTON`) {
+      regionbuttons[bh].addEventListener("click", () => {
+        curregion = (<HTMLButtonElement>regionbuttons[bh]).value
+        regionb.innerHTML = `${api2[curregion].name}`
+        regionlist.style.bottom = `${Object.keys(api2).indexOf(curregion) - Object.keys(api2).length + 1}lh`
+        regionlist.close()
+      });
+    }
+  }
 }
 
 function method2(v: string) {
@@ -187,7 +201,7 @@ function clicklisten(event: Event) {
       clear.style.display = "none"
       break;
     case regionb:
-      //regionlist.open ? regionlist.close() : regionlist.show()
+      regionlist.open ? regionlist.close() : regionlist.show()
       break;
     case mag:
       //loading event, 'sec' rendered

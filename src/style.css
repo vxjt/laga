@@ -18,7 +18,7 @@ body {
 
 input {
   font-family: var(--main-font);
-  font-size: 20px;
+  font-size: large;
   border: 0;
   color: var(--color-b);
   background-color: var(--color-a);
@@ -34,7 +34,16 @@ button {
   background-color: var(--color-a);
   color: var(--color-b);
   border: 0 solid var(--color-c);
-  padding: 0;
+  padding: 0px;
+  white-space: nowrap;
+}
+
+dialog {
+  background: none;
+  border: none;
+  padding: 0px;
+  position: absolute;
+  margin: 0px;
 }
 
 span.mono {
@@ -58,18 +67,11 @@ span.error {
 #mag {
   font-family: 'Noto Emoji';
   font-weight: bolder;
-  cursor: pointer;
 }
 
 #clear {
   font-family: 'Noto Emoji';
   display: none;
-  cursor: pointer;
-}
-
-.flex-wrap {
-  display: flex;
-  
 }
 
 .nav {
@@ -95,6 +97,7 @@ span.error {
   display: flex;
   flex: 1;
   margin: 1vh 2em 0 1em;
+  position: relative;
 }
 
 .nav-region {
@@ -102,11 +105,6 @@ span.error {
   flex: 1;
   white-space: nowrap;
   align-items: flex-end;
-}
-
-button.region {
-  font-size: large;
-  cursor: pointer;
 }
 
 .nav-language {
@@ -120,7 +118,6 @@ button.language {
   font-size: x-small;
   text-align: end;
   height: 1lh;
-  cursor: pointer;
 }
 
 .main {
@@ -142,8 +139,10 @@ button.language {
 }
 
 .legal {
+  text-align: center;
   font-size: xx-small;
   font-style: italic;
+
 }
 
 .dev {
